@@ -609,11 +609,23 @@
 
         function renderStackability(itemStackability){
             return itemStackability.map( stack => {
-                            if(stack === 'Yes' ){
+                            if(stack === 'Yes' || stack === 'No'){
                                 return 
                             }
                             return `<div class="warning">${stack}</div>`
                         }).join('')
+        }
+
+        function stackable(itemStackability){
+            if(itemStackability.length > 1){
+                return false;
+            }
+
+            if(itemStackability[0] === 'No'){
+                return false;
+            }
+
+            return true;
         }
 
         let dropped = '';
@@ -624,7 +636,7 @@
                 <div class="item">
                     <img class="item-image" src="${data.images[name]}" alt="${name}" />
                     <span class="item-info">
-                            <span class="item-name">${name}</span>
+                            <span class="item-name ${stackable(props.stackability) ? '' : 'warning'}">${name}</span>
                             ${renderStackability(props.stackability)}
                     </span>
                     <span class="item-effects">
@@ -642,7 +654,7 @@
                     </span>
                     <img class="item-image" src="${data.images[name]}" alt="${name}" />
                     <span class="item-info">
-                            <span class="item-name">${name}</span>
+                            <span class="item-name ${stackable(props.stackability) ? '' : 'warning'}">${name}</span>
                             ${renderStackability(props.stackability)}
                     </span>
                     
@@ -679,7 +691,8 @@
             align-items: center;
         }
 
-        .item-name {            
+        .item .item-info .item-name {            
+            font-size: 14px !important;
             font-weight: bold;
             display: inline-block;
             width: 155px;
@@ -712,6 +725,12 @@
         .item-info .warning {
             font-size: 10px;
         }
+
+        .legend {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
     </style>
     <title>DAC Items</title>
 </head>
@@ -721,8 +740,9 @@
         <div id="dropped"></div>
         <div id="combined"></div>
     </div>
-
-
+    <div class="legend">
+        <span class="warning">Unstackable items highlighted</span>
+    </div>
 </body>
 
 </html>
