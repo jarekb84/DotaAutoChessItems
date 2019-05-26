@@ -702,6 +702,24 @@
         window.onload = function () {
             document.getElementById('dropped').insertAdjacentHTML('beforeend', dropped);
             document.getElementById('combined').insertAdjacentHTML('beforeend', combined);
+
+            document.querySelectorAll('.item-image').forEach(element => {
+                element.addEventListener('mouseenter', (event) => {
+                    const item = event.currentTarget.attributes['data-name-id'].value;
+
+                    document.querySelectorAll(`[data-name-id="${item}"]`).forEach(element => {
+                        element.classList.add('item-image__selected__preview');
+                    });
+                });
+
+                element.addEventListener('mouseleave', (event) => {
+                    const item = event.currentTarget.attributes['data-name-id'].value;
+
+                    document.querySelectorAll(`[data-name-id="${item}"]`).forEach(element => {
+                        element.classList.remove('item-image__selected__preview');
+                    });
+                });
+            })
         }
 
     </script>
@@ -747,9 +765,15 @@
         .item-image:hover {
             cursor: pointer;
         }
-
+        
+        .item-image__selected__preview {
+            outline: 1px solid #AECBC9;            
+            outline-offset: -1px;
+        }
+        
         .item-image__selected {
-            outline: 1px solid #AECBC9;
+            outline: 1px solid gold;
+            outline-offset: -1px;
         }
 
         .warning {
