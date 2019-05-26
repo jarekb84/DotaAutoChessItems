@@ -694,7 +694,7 @@
             document.getElementById('resetSelectedItems').classList.toggle('hide', hideReset);
         };
 
-        function resetSelectedItems(){
+        function resetSelectedItems() {
             document.querySelectorAll('.item-image__selected').forEach(element => element.classList.remove('item-image__selected'));
             document.getElementById('resetSelectedItems').classList.add('hide');
         }
@@ -741,11 +741,15 @@
         }
 
         .item-image {
-            width: 50px;            
+            width: 50px;
+        }
+
+        .item-image:hover {
+            cursor: pointer;
         }
 
         .item-image__selected {
-            outline: .5px solid white;
+            outline: 1px solid #AECBC9;
         }
 
         .warning {
