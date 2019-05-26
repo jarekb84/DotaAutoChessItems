@@ -634,13 +634,15 @@
         function renderItemRequirements(requirements) {
             return `
                 <span class="item-requirements">
-                    ${requirements.map(req => `<img class="item-requirement" src="${data.images[req]}" alt="${req}" />`).join('')}
+                    ${requirements.map(reqName => renderItemImage(reqName)).join('')}
                 </span>
             `
         }
 
         function renderItemImage(name) {
-            return `<img class="item-image" src="${data.images[name]}" alt="${name}" />`
+            const nameId = name.replace(/ /g, '_')
+
+            return `<img class="item-image" src="${data.images[name]}" data-name-id="${nameId}" alt="${name}" onclick="toggleImageSelection(event)" />`
         }
 
         function renderItemInfo(name, stackability) {
@@ -677,6 +679,24 @@
             return `<span class="item-effects">
                         ${effects.map(effect => `<div class="item-effect">${effect}</div>`).join('')}
                     </span>`
+        }
+
+        function toggleImageSelection(event) {
+            const item = event.currentTarget.attributes['data-name-id'].value;
+
+            document.querySelectorAll(`[data-name-id="${item}"]`).forEach(element => {
+                element.classList.toggle('item-image__selected');
+            });
+
+            const selectedItems = document.querySelectorAll('.item-image__selected').length;
+            const hideReset = selectedItems === 0;
+
+            document.getElementById('resetSelectedItems').classList.toggle('hide', hideReset);
+        };
+
+        function resetSelectedItems(){
+            document.querySelectorAll('.item-image__selected').forEach(element => element.classList.remove('item-image__selected'));
+            document.getElementById('resetSelectedItems').classList.add('hide');
         }
 
         window.onload = function () {
@@ -720,12 +740,12 @@
             width: 200px;
         }
 
-        .item-requirement {
-            width: 50px
+        .item-image {
+            width: 50px;            
         }
 
-        .item-image {
-            width: 50px;
+        .item-image__selected {
+            outline: .5px solid white;
         }
 
         .warning {
@@ -754,6 +774,10 @@
             border: 0;
             right: 0;
             transform: scale(1, -1);
+        }
+
+        .hide {
+            display: none;
         }
 
         .github-corner:hover .octo-arm {
@@ -788,6 +812,9 @@
     </div>
     <div class="legend">
         <span class="warning">Unstackable items highlighted</span>
+        <div>
+            <button id="resetSelectedItems" class="hide" onclick="resetSelectedItems()">Reset Selections</button>
+        </div>
     </div>
     <a href="https://github.com/jarekb84/DotaAutoChessItems" target="blank" class="github-corner"
         aria-label="View source on GitHub"><svg width="50" height="50" viewBox="0 0 250 250" aria-hidden="true">
