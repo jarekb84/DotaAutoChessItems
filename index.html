@@ -607,41 +607,15 @@
 
         };
 
-        function renderStackability(itemStackability) {
-            return itemStackability.map(stack => {
-                if (stack === 'Yes' || stack === 'No') {
-                    return
-                }
-                return `<div class="warning">${stack}</div>`
-            }).join('')
-        }
-
-        function stackable(itemStackability) {
-            if (itemStackability.length > 1) {
-                return false;
-            }
-
-            if (itemStackability[0] === 'No') {
-                return false;
-            }
-
-            return true;
-        }
-
         let dropped = '';
         let combined = '';
 
         for (let [name, props] of Object.entries(data.dropped)) {
             dropped += `
                 <div class="item">
-                    <img class="item-image" src="${data.images[name]}" alt="${name}" />
-                    <span class="item-info">
-                            <span class="item-name ${stackable(props.stackability) ? '' : 'warning'}">${name}</span>
-                            ${renderStackability(props.stackability)}
-                    </span>
-                    <span class="item-effects">
-                        ${props.effects.map(effect => `<div class="item-effect">${effect}</div>`).join('')}
-                    </span>
+                    ${renderItemImage(name)}
+                    ${renderItemInfo(name, props.stackability)}
+                    ${renderEffects(props.effects)}
                 </div>
             `
         }
@@ -649,21 +623,60 @@
         for (let [name, props] of Object.entries(data.combined)) {
             combined += `
                 <div class="item">
-                    <span class="item-requirements">
-                            ${props.requirements.map(req => `<img class="item-requirement" src="${data.images[req]}" alt="${req}" />`).join('')}
-                    </span>
-                    <img class="item-image" src="${data.images[name]}" alt="${name}" />
-                    <span class="item-info">
-                            <span class="item-name ${stackable(props.stackability) ? '' : 'warning'}">${name}</span>
-                            ${renderStackability(props.stackability)}
-                    </span>
-                    
-
-                    <span class="item-effects">
-                        ${props.effects.map(effect => `<div class="item-effect">${effect}</div>`).join('')}
-                    </span>
+                    ${renderItemRequirements(props.requirements)}                        
+                    ${renderItemImage(name)}
+                    ${renderItemInfo(name, props.stackability)}
+                    ${renderEffects(props.effects)}
                 </div>
             `
+        }
+
+        function renderItemRequirements(requirements) {
+            return `
+                <span class="item-requirements">
+                    ${requirements.map(req => `<img class="item-requirement" src="${data.images[req]}" alt="${req}" />`).join('')}
+                </span>
+            `
+        }
+
+        function renderItemImage(name) {
+            return `<img class="item-image" src="${data.images[name]}" alt="${name}" />`
+        }
+
+        function renderItemInfo(name, stackability) {
+            return `
+                <span class="item-info">
+                    <span class="item-name ${stackable(stackability) ? '' : 'warning'}">${name}</span>
+                    ${renderStackability(stackability)}
+                </span>
+            `
+
+            function renderStackability(itemStackability) {
+                return itemStackability.map(stack => {
+                    if (stack === 'Yes' || stack === 'No') {
+                        return
+                    }
+                    return `<div class="warning">${stack}</div>`
+                }).join('')
+            }
+
+            function stackable(itemStackability) {
+                if (itemStackability.length > 1) {
+                    return false;
+                }
+
+                if (itemStackability[0] === 'No') {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        function renderEffects(effects) {
+            return `<span class="item-effects">
+                        ${effects.map(effect => `<div class="item-effect">${effect}</div>`).join('')}
+                    </span>`
         }
 
         window.onload = function () {
