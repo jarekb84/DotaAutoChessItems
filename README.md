@@ -10,6 +10,7 @@ https://jarekb84.github.io/DotaAutoChessItems/
   - makes it easier to spot the item that just dropped for you and what it can be used for
 - Click on items to highlight all instances of them
   - Helps keeping track of drops during gameplay
+- Toggle displaying of sections, columns, and spacing  
 
 ## Sources
 
