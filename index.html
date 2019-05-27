@@ -709,7 +709,7 @@
             document.getElementById('resetSelectedItems').classList.add('hide');
         }
 
-        function toggleDisplay(selector) {            
+        function toggleDisplay(selector) {
             toggleClass(selector, 'hide');
         }
 
@@ -747,7 +747,7 @@
             justify-content: center;
         }
 
-        .container__contents--spaced {            
+        .container__contents--spaced {
             justify-content: space-between;
         }
 
@@ -860,7 +860,6 @@
         }
 
         .actions__settings {
-
             margin-left: 5px;
         }
 
@@ -878,6 +877,10 @@
             display: flex;
             justify-content: space-between;
         }
+
+        .setting:hover {
+            cursor: pointer;
+        }
     </style>
     <title>DAC Items</title>
 </head>
@@ -891,43 +894,35 @@
         <span class="warning">Unstackable items highlighted</span>
         <div class="actions">
             <button id="resetSelectedItems" class="hide" onclick="resetSelectedItems()">Reset Selections</button>
-            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" class="actions__settings" onclick="toggleDisplay('#settings')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" class="actions__settings"
+                onclick="toggleDisplay('#settings')">
                 <path fill="none" d="M0 0h20v20H0V0z" />
-                <path fill="#fff" d="M15.95 10.78c.03-.25.05-.51.05-.78s-.02-.53-.06-.78l1.69-1.32c.15-.12.19-.34.1-.51l-1.6-2.77c-.1-.18-.31-.24-.49-.18l-1.99.8c-.42-.32-.86-.58-1.35-.78L12 2.34c-.03-.2-.2-.34-.4-.34H8.4c-.2 0-.36.14-.39.34l-.3 2.12c-.49.2-.94.47-1.35.78l-1.99-.8c-.18-.07-.39 0-.49.18l-1.6 2.77c-.1.18-.06.39.1.51l1.69 1.32c-.04.25-.07.52-.07.78s.02.53.06.78L2.37 12.1c-.15.12-.19.34-.1.51l1.6 2.77c.1.18.31.24.49.18l1.99-.8c.42.32.86.58 1.35.78l.3 2.12c.04.2.2.34.4.34h3.2c.2 0 .37-.14.39-.34l.3-2.12c.49-.2.94-.47 1.35-.78l1.99.8c.18.07.39 0 .49-.18l1.6-2.77c.1-.18.06-.39-.1-.51l-1.67-1.32zM10 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z" />
+                <path fill="#fff"
+                    d="M15.95 10.78c.03-.25.05-.51.05-.78s-.02-.53-.06-.78l1.69-1.32c.15-.12.19-.34.1-.51l-1.6-2.77c-.1-.18-.31-.24-.49-.18l-1.99.8c-.42-.32-.86-.58-1.35-.78L12 2.34c-.03-.2-.2-.34-.4-.34H8.4c-.2 0-.36.14-.39.34l-.3 2.12c-.49.2-.94.47-1.35.78l-1.99-.8c-.18-.07-.39 0-.49.18l-1.6 2.77c-.1.18-.06.39.1.51l1.69 1.32c-.04.25-.07.52-.07.78s.02.53.06.78L2.37 12.1c-.15.12-.19.34-.1.51l1.6 2.77c.1.18.31.24.49.18l1.99-.8c.42.32.86.58 1.35.78l.3 2.12c.04.2.2.34.4.34h3.2c.2 0 .37-.14.39-.34l.3-2.12c.49-.2.94-.47 1.35-.78l1.99.8c.18.07.39 0 .49-.18l1.6-2.77c.1-.18.06-.39-.1-.51l-1.67-1.32zM10 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z" />
             </svg>
         </div>
-        <div id="settings" class="hide">
-            <div class="setting">
+        <div id="settings">
+            <small>Click grear to hide</small>
+            <label class="setting">
                 <span>Show Dropped</span>
-                <span class="setting__options">
-                    <input type="checkbox" checked onclick="toggleDisplay('#dropped')">
-                </span>
-            </div>
-            <div class="setting">
+                <input type="checkbox" checked onclick="toggleDisplay('#dropped')">
+            </label>
+            <label class="setting">
                 <span>Show Combined</span>
-                <span class="setting__options">
-                    <input type="checkbox" checked onclick="toggleDisplay('#combined')">
-                </span>
-            </div>
-            <div class="setting">
+                <input type="checkbox" checked onclick="toggleDisplay('#combined')">
+            </label>
+            <label class="setting">
                 <span>Show Names</span>
-                <span class="setting__options">
-                    <input type="checkbox" checked onclick="toggleDisplay('.item-info')">
-                </span>
-            </div>
-            <div class="setting">
+                <input type="checkbox" checked onclick="toggleDisplay('.item-info')">
+            </label>
+            <label class="setting">
                 <span>Show Effects</span>
-                <span class="setting__options">
-                    <input type="checkbox" checked onclick="toggleDisplay('.item-effects')">
-                </span>
-            </div>
-
-            <div class="setting">
-                    <span>Centered</span>
-                    <span class="setting__options">
-                        <input type="checkbox" checked onclick="toggleClass('.container', 'container__contents--spaced')">
-                    </span>
-                </div>
+                <input type="checkbox" checked onclick="toggleDisplay('.item-effects')">
+            </label>
+            <label class="setting">
+                <span>Centered</span>
+                <input type="checkbox" checked onclick="toggleClass('.container', 'container__contents--spaced')">
+            </label>
         </div>
     </div>
     <a href="https://github.com/jarekb84/DotaAutoChessItems" target="blank" class="github-corner"
