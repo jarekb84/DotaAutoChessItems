@@ -744,11 +744,11 @@
     <style>
         .container {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
         }
 
-        .container__contents--centered {
-            justify-content: center;
+        .container__contents--spaced {            
+            justify-content: space-between;
         }
 
         body {
@@ -923,9 +923,9 @@
             </div>
 
             <div class="setting">
-                    <span>Space out sections</span>
+                    <span>Centered</span>
                     <span class="setting__options">
-                        <input type="checkbox" checked onclick="toggleClass('.container', 'container__contents--centered')">
+                        <input type="checkbox" checked onclick="toggleClass('.container', 'container__contents--spaced')">
                     </span>
                 </div>
         </div>
