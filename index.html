@@ -692,11 +692,13 @@
         }
 
         function toggleImageSelection(event) {
-            const item = event.currentTarget.attributes['data-name-id'].value;
+            const item = event.currentTarget.attributes['data-name-id'].value;            
 
             document.querySelectorAll(`[data-name-id="${item}"]`).forEach(element => {
                 element.classList.toggle('item-image__selected');
             });
+
+            displayStartedCombinedAtTop();
 
             const selectedItems = document.querySelectorAll('.item-image__selected').length;
             const hideReset = selectedItems === 0;
@@ -704,8 +706,37 @@
             document.getElementById('resetSelectedItems').classList.toggle('hide', hideReset);
         };
 
+        function displayStartedCombinedAtTop(){
+            const featureDisabled = document.getElementById('begunRecepiesToTop').checked === false;
+
+            if(featureDisabled){
+                return;
+            }
+
+            document.querySelectorAll(`#combined__selected .item`).forEach(element => {
+                const selectedRequirements = element.querySelectorAll('.item-requirements .item-image__selected');
+                const hasSelected = selectedRequirements.length > 0;
+                if (hasSelected) {
+                    element.classList.remove('hide');
+                } else {
+                    element.classList.add('hide');
+                }
+            });
+
+            document.querySelectorAll(`#combined__unselected .item`).forEach(element => {
+                const selectedRequirements = element.querySelectorAll('.item-requirements .item-image__selected');
+                const hasSelected = selectedRequirements.length > 0;
+                if (hasSelected) {
+                    element.classList.add('hide');
+                } else {
+                    element.classList.remove('hide');
+                }
+            });
+        }
+
         function resetSelectedItems() {
             document.querySelectorAll('.item-image__selected').forEach(element => element.classList.remove('item-image__selected'));
+            displayStartedCombinedAtTop();
             document.getElementById('resetSelectedItems').classList.add('hide');
         }
 
@@ -719,7 +750,12 @@
 
         window.onload = function () {
             document.getElementById('dropped').insertAdjacentHTML('beforeend', dropped);
-            document.getElementById('combined').insertAdjacentHTML('beforeend', combined);
+            document.getElementById('combined__selected').insertAdjacentHTML('beforeend', combined);
+            document.getElementById('combined__unselected').insertAdjacentHTML('beforeend', combined);
+
+            document.querySelectorAll('#combined__selected .item').forEach(element => {
+                element.classList.add('hide');
+            });
 
             document.querySelectorAll('.item-image').forEach(element => {
                 element.addEventListener('mouseenter', (event) => {
@@ -888,7 +924,10 @@
 <body>
     <div class="container">
         <div id="dropped"></div>
-        <div id="combined"></div>
+        <div id="combined">
+            <div id="combined__selected"></div>
+            <div id="combined__unselected"></div>
+        </div>
     </div>
     <div class="legend">
         <span class="warning">Unstackable items highlighted</span>
@@ -923,6 +962,11 @@
                 <span>Centered</span>
                 <input type="checkbox" checked onclick="toggleClass('.container', 'container__contents--spaced')">
             </label>
+
+            <label class="setting">
+                    <span>Begun Recipes to top</span>
+                    <input type="checkbox" checked id="begunRecepiesToTop">
+                </label>
         </div>
     </div>
     <a href="https://github.com/jarekb84/DotaAutoChessItems" target="blank" class="github-corner"
