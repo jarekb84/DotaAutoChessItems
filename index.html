@@ -72,6 +72,7 @@
                         "+10 Attack damage"
                     ],
                     "dropFrom": "Tier 1",
+                    "earliestRoundAvailable": 1,
                     "stackability": [
                         "Yes"
                     ]
@@ -82,6 +83,7 @@
                         "Instantly teleports to the farthest vacant grid in this column."
                     ],
                     "dropFrom": "Tier 2",
+                    "earliestRoundAvailable": 10,
                     "stackability": [
                         "No"
                     ]
@@ -91,6 +93,7 @@
                         "3 Armor reduction to the target."
                     ],
                     "dropFrom": "Tier 1",
+                    "earliestRoundAvailable": 1,
                     "stackability": [
                         "No"
                     ]
@@ -100,6 +103,7 @@
                         "+20 Attack damage"
                     ],
                     "dropFrom": "Tier 2",
+                    "earliestRoundAvailable": 10,
                     "stackability": [
                         "Yes"
                     ]
@@ -109,6 +113,7 @@
                         "+5 Armor"
                     ],
                     "dropFrom": "Tier 1",
+                    "earliestRoundAvailable": 1,
                     "stackability": [
                         "Yes"
                     ]
@@ -118,6 +123,7 @@
                         "+15% Magic resistance"
                     ],
                     "dropFrom": "Tier 1",
+                    "earliestRoundAvailable": 1,
                     "stackability": [
                         "Yes"
                     ]
@@ -127,6 +133,7 @@
                         "+50% Mana gained by dealing damage"
                     ],
                     "dropFrom": "Tier 1",
+                    "earliestRoundAvailable": 1,
                     "stackability": [
                         "No"
                     ]
@@ -136,6 +143,7 @@
                         "+30 Attack damage"
                     ],
                     "dropFrom": "Tier 3",
+                    "earliestRoundAvailable": 25,
                     "stackability": [
                         "Yes"
                     ]
@@ -145,6 +153,7 @@
                         "+30 Attack speed"
                     ],
                     "dropFrom": "Tier 3",
+                    "earliestRoundAvailable": 25,
                     "stackability": [
                         "Yes"
                     ]
@@ -154,6 +163,7 @@
                         "+15 Attack damage"
                     ],
                     "dropFrom": "Tier 2",
+                    "earliestRoundAvailable": 10,
                     "stackability": [
                         "Yes"
                     ]
@@ -163,6 +173,7 @@
                         "+15 Attack Damage"
                     ],
                     "dropFrom": "Tier 2",
+                    "earliestRoundAvailable": 10,
                     "stackability": [
                         "Yes"
                     ]
@@ -172,6 +183,7 @@
                         "+5% Lifesteal"
                     ],
                     "dropFrom": "Tier 1",
+                    "earliestRoundAvailable": 1,
                     "stackability": [
                         "Yes"
                     ]
@@ -182,6 +194,7 @@
                         "+100% mana gained by dealing damage"
                     ],
                     "dropFrom": "Tier 4",
+                    "earliestRoundAvailable": 35,
                     "stackability": [
                         "No"
                     ]
@@ -191,6 +204,7 @@
                         "+15% Max HP"
                     ],
                     "dropFrom": "Tier 2",
+                    "earliestRoundAvailable": 10,
                     "stackability": [
                         "No"
                     ]
@@ -200,6 +214,7 @@
                         "+10 Armor."
                     ],
                     "dropFrom": "Tier 2",
+                    "earliestRoundAvailable": 10,
                     "stackability": [
                         "Yes"
                     ]
@@ -209,6 +224,7 @@
                         "+5 Attack damage, +10 Attack speed"
                     ],
                     "dropFrom": "Tier 1",
+                    "earliestRoundAvailable": 1,
                     "stackability": [
                         "Yes"
                     ]
@@ -219,6 +235,7 @@
                         "+15% Max HP"
                     ],
                     "dropFrom": "Tier 4",
+                    "earliestRoundAvailable": 35,
                     "stackability": [
                         "Yes"
                     ]
@@ -228,6 +245,7 @@
                         "+10 HP regeneration"
                     ],
                     "dropFrom": "Tier 1",
+                    "earliestRoundAvailable": 1,
                     "stackability": [
                         "Yes"
                     ]
@@ -237,6 +255,7 @@
                         "+5 HP regeneration"
                     ],
                     "dropFrom": "Tier 1",
+                    "earliestRoundAvailable": 1,
                     "stackability": [
                         "Yes"
                     ]
@@ -246,6 +265,7 @@
                         "-30% Magic resistance to target"
                     ],
                     "dropFrom": "Tier 1",
+                    "earliestRoundAvailable": 1,
                     "stackability": [
                         "No"
                     ]
@@ -255,6 +275,7 @@
                         "+50 Attack damage"
                     ],
                     "dropFrom": "Tier 4",
+                    "earliestRoundAvailable": 35,
                     "stackability": [
                         "Yes"
                     ]
@@ -264,6 +285,7 @@
                         "-30% Magic resistance to target"
                     ],
                     "dropFrom": "Tier 2",
+                    "earliestRoundAvailable": 10,
                     "stackability": [
                         "No"
                     ]
@@ -273,6 +295,7 @@
                         "Blocks 10 damage"
                     ],
                     "dropFrom": "Tier 1",
+                    "earliestRoundAvailable": 1,
                     "stackability": [
                         "No"
                     ]
@@ -283,6 +306,7 @@
                         "+25% mana gained through taking damage"
                     ],
                     "dropFrom": "Tier 3",
+                    "earliestRoundAvailable": 25,
                     "stackability": [
                         "Mana: No",
                         "Other: Yes"
@@ -293,6 +317,7 @@
                         "+250 Max HP"
                     ],
                     "dropFrom": "Tier 2",
+                    "earliestRoundAvailable": 10,
                     "stackability": [
                         "Yes"
                     ]
@@ -302,6 +327,7 @@
                         "+100% mana gained by dealing damage"
                     ],
                     "dropFrom": "Tier 1",
+                    "earliestRoundAvailable": 1,
                     "stackability": [
                         "No"
                     ]
@@ -620,14 +646,50 @@
         let dropped = '';
         let combined = '';
 
-        for (let [name, props] of Object.entries(data.dropped)) {
-            dropped += `
+        // TODO implement
+        //const sortDropped = document.getElementById('sortDroppedByEarliestRoundAvailable').checked === true;
+
+        if (true) {
+            let droppedItems = [];
+            Object.keys(data.dropped).forEach(itemName => {
+                droppedItems.push({
+                    name: itemName,
+                    ...data.dropped[itemName]
+                })
+            });
+
+            droppedItems.sort((a, b) => {
+                if (a.earliestRoundAvailable < b.earliestRoundAvailable) {
+                    return -1;
+                }
+
+                if (a.earliestRoundAvailable > b.earliestRoundAvailable) {
+                    return 1;
+                }
+
+                return 0;
+            })
+
+            droppedItems.forEach(item => {
+                dropped += `
+                <div class="item">
+                    ${renderItemImage(item.name)}
+                    ${renderItemInfo(item.name, item.stackability)}
+                    ${renderEffects(item.effects)}
+                </div>
+            `
+            })
+
+        } else {
+            for (let [name, props] of Object.entries(data.dropped)) {
+                dropped += `
                 <div class="item">
                     ${renderItemImage(name)}
                     ${renderItemInfo(name, props.stackability)}
                     ${renderEffects(props.effects)}
                 </div>
             `
+            }
         }
 
         for (let [name, props] of Object.entries(data.combined)) {
@@ -692,7 +754,7 @@
         }
 
         function toggleImageSelection(event) {
-            const item = event.currentTarget.attributes['data-name-id'].value;            
+            const item = event.currentTarget.attributes['data-name-id'].value;
 
             document.querySelectorAll(`[data-name-id="${item}"]`).forEach(element => {
                 element.classList.toggle('item-image__selected');
@@ -706,10 +768,10 @@
             document.getElementById('resetSelectedItems').classList.toggle('hide', hideReset);
         };
 
-        function displayStartedCombinedAtTop(){
+        function displayStartedCombinedAtTop() {
             const featureDisabled = document.getElementById('begunRecepiesToTop').checked === false;
 
-            if(featureDisabled){
+            if (featureDisabled) {
                 return;
             }
 
@@ -962,11 +1024,17 @@
                 <span>Centered</span>
                 <input type="checkbox" checked onclick="toggleClass('.container', 'container__contents--spaced')">
             </label>
-
             <label class="setting">
-                    <span>Begun Recipes to top</span>
-                    <input type="checkbox" checked id="begunRecepiesToTop">
-                </label>
+                <span>Begun Recipes to top</span>
+                <input type="checkbox" checked id="begunRecepiesToTop">
+            </label>
+
+            <!-- TODO: implement -->
+            <!-- <label class="setting">
+                <span>Sort Dropped by round available</span>
+                <input type="checkbox" checked id="sortDroppedByEarliestRoundAvailable">
+            </label> -->
+
         </div>
     </div>
     <a href="https://github.com/jarekb84/DotaAutoChessItems" target="blank" class="github-corner"
